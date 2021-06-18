@@ -15,15 +15,25 @@ namespace Security
         {
             _privateKey = csp.ExportParameters(true);
             _publicKey = csp.ExportParameters(false);
-
         }
-        public string GetKey() => csp.ToXmlString(false);
-        public RSAParameters x(string key)
+        public void LoadKeys(string xml) 
+        {
+            csp.FromXmlString(xml);
+            _privateKey= csp.ExportParameters(true);
+        }
+        public string GetKey() => csp.ToXmlString(true);
+        public string LoadKeys(string xml, string data)
+        {
+            csp.FromXmlString(xml);
+            _privateKey = csp.ExportParameters(true);
+            return Descrypt(data);
+        }
+        public RSAParameters ConvertPublicKey(string key)
         {
             var sr = new StringReader(key);
             var xs = new XmlSerializer(typeof(RSAParameters));
-            var t = (RSAParameters)xs.Deserialize(sr);
-            return t;
+            var RSAParameter = (RSAParameters)xs.Deserialize(sr);
+            return RSAParameter;
         }
         public string PublicKeyString()
         {
