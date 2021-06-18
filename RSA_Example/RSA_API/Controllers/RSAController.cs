@@ -32,7 +32,7 @@ namespace RSA_API.Controllers
                 
                 db.SecurityInformation.Add(data);
                 db.SaveChanges();
-                return Content(data.PublicKey, "application/xml");
+                return Content(data.Keys, "application/xml");
                 //return Ok();
             }
             catch (Exception ex)
