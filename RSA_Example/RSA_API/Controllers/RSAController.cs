@@ -19,7 +19,20 @@ namespace RSA_API.Controllers
         { 
         
         }
-
+        [HttpGet]
+        public IActionResult GetKey(string id)
+        {
+            try
+            {
+                var db = new DB();
+                var data = db.SecurityInformation.FirstOrDefault(s => s.ID == Guid.Parse(id));
+                return Content(data.Keys, "application/xml");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet]
         public IActionResult GenerateKey()
         {
@@ -28,8 +41,6 @@ namespace RSA_API.Controllers
                 var data = new SecurityInformation();
                 data.Apikey = "cc3a4097-9323-461e-8a54-bbf636901720";
                 var db = new DB();
-                
-                
                 db.SecurityInformation.Add(data);
                 db.SaveChanges();
                 return Content(data.Keys, "application/xml");
@@ -37,10 +48,10 @@ namespace RSA_API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
-  
+        
         [HttpGet("AllKey")]
         public IActionResult AllPublicKey()
         {
@@ -53,6 +64,19 @@ namespace RSA_API.Controllers
                 return BadRequest();
             }
         }
-        
+
+        [HttpPost]
+        public IActionResult TestMessages(Message msn)
+        {
+            try
+            {
+              return Ok();
+            }
+            catch
+            {
+              return BadRequest();
+            }
+        }
+
     }
 }

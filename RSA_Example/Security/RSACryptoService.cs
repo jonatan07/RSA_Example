@@ -45,7 +45,6 @@ namespace Security
         }
         public string Encrypt(string d, RSAParameters key)
         {
-
             csp.ImportParameters(key);
 
             var data = Encoding.Unicode.GetBytes(d);
