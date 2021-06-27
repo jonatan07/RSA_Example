@@ -33,7 +33,7 @@ namespace RSA_API.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet]
+        [HttpGet("GenerateKey")]
         public IActionResult GenerateKey()
         {
             try
