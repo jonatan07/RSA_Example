@@ -16,6 +16,12 @@ namespace Security
             _privateKey = csp.ExportParameters(true);
             _publicKey = csp.ExportParameters(false);
         }
+        public RSACryptoService(string xml)
+        {
+            csp.FromXmlString(xml);
+            _privateKey = csp.ExportParameters(true);
+            _publicKey = csp.ExportParameters(false);
+        }
         public void LoadKeys(string xml) 
         {
             csp.FromXmlString(xml);
@@ -55,8 +61,8 @@ namespace Security
         {
             var data = Convert.FromBase64String(cyd);
             csp.ImportParameters(_privateKey);
-            var plaint = csp.Decrypt(data, false);
-            return Encoding.Unicode.GetString(plaint);
+            var plainText = csp.Decrypt(data, false);
+            return Encoding.Unicode.GetString(plainText);
         }
     }
 }
