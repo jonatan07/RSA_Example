@@ -19,7 +19,7 @@ namespace RSA_API.Controllers
         { 
         
         }
-        [HttpGet]
+        [HttpGet("GetKey")]
         public IActionResult GetKey(string id)
         {
             try
