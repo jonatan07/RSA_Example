@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <None Update="RSA_API.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="~SecurityRSA.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
