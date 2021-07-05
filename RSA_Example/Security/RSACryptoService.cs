@@ -25,7 +25,7 @@ namespace Security
         public void LoadKeys(string xml) 
         {
             csp.FromXmlString(xml);
-            _privateKey= csp.ExportParameters(true);
+            //_privateKey= csp.ExportParameters(true);
             _publicKey = csp.ExportParameters(false);
         }
         public string GetKey() => csp.ToXmlString(true);

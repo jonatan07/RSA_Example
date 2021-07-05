@@ -6,7 +6,9 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -43,13 +45,36 @@ namespace RSAClientDesktop
             }
         }
 
-        private void btnSend_Click(object sender, EventArgs e)
+        private async void btnSend_Click(object sender, EventArgs e)
         {
-            var security = new RSACryptoService();
-            security.LoadKeys(_xmlKeys);
-            var encryptMessage = security.Encrypt(txtMessage.Text,security.ConvertPublicKey(security.PublicKeyString()));
-
-            txtMessageEncrypt.Text = encryptMessage;
+            try
+            {
+                var security = new RSACryptoService();
+                security.LoadKeys(_xmlKeys);
+                var encryptMessage = security.Encrypt(txtMessage.Text, security.ConvertPublicKey(security.PublicKeyString()));
+                var httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri("https://axcomapi.azurewebsites.net");
+                //httpClient.BaseAddress = new Uri("https://localhost:44348");
+                HttpRequestMessage req = new HttpRequestMessage();
+                req.Method = HttpMethod.Post;
+                var dataRequest = new RequestDTO
+                {
+                    DateCreated = DateTime.Now,
+                    Data = encryptMessage,
+                    IdSecret = txtSecret.Text
+                };
+                string content = JsonSerializer.Serialize(dataRequest);
+                req.Content = new StringContent(content);
+                req.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                req.RequestUri = new Uri("api/Monitor/StatusCard",UriKind.Relative);
+                var result = await httpClient.SendAsync(req);
+                txtMessageEncrypt.Text = encryptMessage;
+                txtDescriptMessage.Text = await result.Content.ReadAsStringAsync();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);    
+            }
         }
     }
 }

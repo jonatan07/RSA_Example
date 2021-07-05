@@ -32,9 +32,11 @@ namespace RSAClientDesktop
             this.btnSend = new System.Windows.Forms.Button();
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDescriptMessage = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtSecret = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtMessageEncrypt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -48,7 +50,7 @@ namespace RSAClientDesktop
             // btnSend
             // 
             this.btnSend.Enabled = false;
-            this.btnSend.Location = new System.Drawing.Point(290, 56);
+            this.btnSend.Location = new System.Drawing.Point(290, 107);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(94, 29);
             this.btnSend.TabIndex = 0;
@@ -58,7 +60,7 @@ namespace RSAClientDesktop
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(28, 56);
+            this.txtMessage.Location = new System.Drawing.Point(28, 107);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(245, 27);
             this.txtMessage.TabIndex = 1;
@@ -66,24 +68,24 @@ namespace RSAClientDesktop
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 33);
+            this.label1.Location = new System.Drawing.Point(28, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Escriba su mensaje";
             // 
-            // textBox1
+            // txtDescriptMessage
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(33, 212);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(240, 27);
-            this.textBox1.TabIndex = 3;
+            this.txtDescriptMessage.Enabled = false;
+            this.txtDescriptMessage.Location = new System.Drawing.Point(28, 266);
+            this.txtDescriptMessage.Name = "txtDescriptMessage";
+            this.txtDescriptMessage.Size = new System.Drawing.Size(240, 27);
+            this.txtDescriptMessage.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 177);
+            this.label2.Location = new System.Drawing.Point(23, 231);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(235, 20);
             this.label2.TabIndex = 4;
@@ -91,10 +93,12 @@ namespace RSAClientDesktop
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtSecret);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtMessageEncrypt);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtDescriptMessage);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtMessage);
             this.groupBox1.Controls.Add(this.btnSend);
@@ -106,10 +110,26 @@ namespace RSAClientDesktop
             this.groupBox1.Text = "Operaciones";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // txtSecret
+            // 
+            this.txtSecret.Location = new System.Drawing.Point(28, 47);
+            this.txtSecret.Name = "txtSecret";
+            this.txtSecret.Size = new System.Drawing.Size(245, 27);
+            this.txtSecret.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(28, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 20);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "SecretID";
+            // 
             // txtMessageEncrypt
             // 
             this.txtMessageEncrypt.Enabled = false;
-            this.txtMessageEncrypt.Location = new System.Drawing.Point(33, 138);
+            this.txtMessageEncrypt.Location = new System.Drawing.Point(28, 192);
             this.txtMessageEncrypt.Name = "txtMessageEncrypt";
             this.txtMessageEncrypt.Size = new System.Drawing.Size(240, 27);
             this.txtMessageEncrypt.TabIndex = 6;
@@ -117,7 +137,7 @@ namespace RSAClientDesktop
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 105);
+            this.label3.Location = new System.Drawing.Point(28, 159);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(143, 20);
             this.label3.TabIndex = 5;
@@ -179,7 +199,7 @@ namespace RSAClientDesktop
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox txtMessage;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDescriptMessage;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtMessageEncrypt;
@@ -188,6 +208,8 @@ namespace RSAClientDesktop
         private System.Windows.Forms.Label lbStatus;
         private System.Windows.Forms.Button btnLoadFile;
         private System.Windows.Forms.OpenFileDialog OFdialog;
+        private System.Windows.Forms.TextBox txtSecret;
+        private System.Windows.Forms.Label label4;
     }
 }
 
